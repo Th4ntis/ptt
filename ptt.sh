@@ -4,6 +4,8 @@
 # git clone git@github.com:Th4ntis/ptt.git
 #
 # Standard Disclaimer: Author assumes no liability for any damage
+#
+# Still a work in a progress - any constructive criticism welcome.
 
 # status indicators
 greenplus='\e[1;33m[++]\e[0m'
@@ -11,31 +13,30 @@ greenminus='\e[1;33m[--]\e[0m'
 redexclaim='\e[1;31m[!!]\e[0m'
 blinkexclaim='\e[1;31m[\e[5;31m!!\e[0m\e[1;31m]\e[0m'
 
-sudo apt update && sudo ap update -y 
+sudo apt update && sudo apt update -y 
 echo -e "\n $greenplus Installing list of tools through apt \n"
-sudo apt install -y nmap sqlmap tshark tcpdump wireshark net-tools
+sudo apt install -y nmap tshark tcpdump wireshark gobuster dirb net-tools curl git default-jre python3 python3-pip
 echo -e "\n $greenplus Complete! \n"
-
-echo -e "\n $greenplus Installing Bettercap \n"
-sleep 2
 
 # Downloads and Installs GO, adds it to $PATH
 curl -OL https://go.dev/dl/go1.17.7.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo  tar -C /usr/local -xzf go1.17.7.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.7.linux-amd64.tar.gz
 rm go1.17.7.linux-amd64.tar.gz
-echo "export GOPATH=/opt/go" >> ~/.profile
+echo "export GOPATH=~/.go" >> ~/.profile
 echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile
 source ~/.profile
 
 # Installs Bettercap
-go get github.com/bettercap/bettercap
-cd $GOPATH/src/github.com/bettercap/bettercap
-make build
-sudo make install
+echo -e "\n $greenplus Installing Bettercap \n"
+sleep 2
+go install github.com/bettercap/bettercap@latest
+echo "alias bettercap='sudo ~/.go/bin/bettercap' >> ~/.zshrc"
+source ~/.zshrc
 
 #Installs Bettercap WebUI
-sudo bettercap -eval "caplets.update; ui.update; q"
-source /home/$USER/.bashrc
+sudo ~/.go/bin/bettercap -eval "caplets.update; ui.update; q"
+echo "alias bettercap-webui='sudo ~/.go/bin/bettercap -caplet http-ui' >> ~/.zshrc"
+source ~/.zshrc
 echo -e "\n $greenplus bettercap install complete \n"
 sleep 2
 
@@ -149,10 +150,9 @@ sleep 2
 echo -e "\n $greenplus Installing Impacket \n"
 sleep 2
 cd /opt/
-sudo git clone https://github.com/SecureAuthCorp/impacket.git
-cd impacket
-sudo pip3 install .
-echo -e "\n $greenplus impacket install complete \n"
+sudo git clone https://github.com/SecureAuthCorp/impacket.git && cd impacket
+sudo python3 -m pip install .
+echo -e "\n $greenplus Impacket install complete \n"
 sleep 2
 
 echo -e "\n $greenplus Installing Burpsuite \n"
@@ -194,9 +194,8 @@ echo -e "\n $greenplus Installing Bully \n"
 sleep 2
 sudo apt install -y build-essential libpcap-dev
 cd /opt/
-sudo git clone https://github.com/aanarchyy/bully
-cd bully*/
-cd src/
+sudo git clone https://github.com/kimocoder/bully.git
+cd bully*/ && cd src/
 sudo make
 sudo make install
 cd /opt/
@@ -214,6 +213,74 @@ sudo make install
 cd /opt/
 sudo rm cowpatty-4.6.tgz
 echo -e "\n $greenplus cowpatty install complete \n"
+sleep 2
+
+echo -e "\n $greenplus Installing DirBuster \n"
+sleep 2
+cd /opt/
+sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git
+sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/dirbuster/DirBuster-1.0-RC1.sh
+echo "alias dirbuster='sudo /opt/dirbuster/DirBuster-1.0-RC1.sh' >> ~/.zshrc"
+source .zshrc
+echo -e "\n $greenplus DirBuster install complete \n"
+sleep 2
+
+echo -e "\n $greenplus Installing John The Ripper \n"
+sleep 2
+cd /opt/
+sudo apt-get -y install git build-essential libssl-dev zlib1g-dev yasm pkg-config libgmp-dev libpcap-dev libbz2-dev nvidia-opencl-dev cmake bison flex clang
+cd /opt/john/src
+sudo git clone --recursive https://github.com/teeshop/rexgen.git && cd rexgen
+sudo ./install.sh
+cd /opt/
+sudo git clone https://github.com/openwall/john -b bleeding-jumbo john
+cd /opt/john/
+sudo ./configure --enable-rexgen && sudo make -s clean && sudo make -sj4
+sudo make shell-completion
+echo -e "\n $greenplus John install complete \n"
+sleep 2
+
+echo -e "\n $greenplus Installing SecLists \n"
+sleep 2
+cd /opt/
+sudo git clone https://github.com/danielmiessler/SecLists.git
+echo -e "\n $greenplus SecLists install complete \n"
+sleep 2
+
+echo -e "\n $greenplus Installing THC-hydra \n"
+sleep 2
+cd /opt/
+sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra
+sudo ./configure
+sudo make
+sudo make install
+echo -e "\n $greenplus THC-Hydra install complete \n"
+sleep 2
+
+echo -e "\n $greenplus Installing Harvester \n"
+sleep 2
+cd /opt/
+sudo git clone https://github.com/laramies/theHarvester.git && cd theHarvester
+sudo python3 -m pip install -r requirements/base.txt
+echo "alias theHarvester='cd /opt/theHarvester && python3 theHarvester.py -h' >> ~/.zshrc"
+source ~/.zshrc
+echo -e "\n $greenplus Harvester install complete \n"
+sleep 2
+
+echo -e "\n $greenplus Installing SQLMap \n"
+sleep 2
+cd /opt/
+sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+echo "alias sqlmap='python3 /opt/sqlmap/sqlmap.py' >> ~/.zshhrc"
+source ~/.zshrc
+echo -e "\n $greenplus SQLMap install complete \n"
+sleep 2
+
+echo -e "\n $greenplus Installing PEASS \n"
+sleep 2
+cd /opt/
+sudo git clone https://github.com/carlospolop/PEASS-ng.git
+echo -e "\n $greenplus PEASS install complete \n"
 sleep 2
 
 echo -e "\n\n    All finished! Happy Hacking! :) \n"
