@@ -165,6 +165,16 @@ sudo rm -r /home/$USER/BurpSuite*
 echo -e "\n $greenplus burpsuite install complete \n"
 sleep 2
 
+echo -e "\n $greenplus Installing BeEF \n"
+sleep 2
+cd /opt/
+sudo git clone https://github.com/beefproject/beef.git && cd beef
+sudo ./install
+echo "alias beef='cd /opt/beef && sudo ./beef' >> ~/.zshrc"
+source ~/.zshrc
+echo -e "\n $greenplus BeEF install complete \n"
+sleep 2
+
 echo -e "\n $greenplus Installing PixieWPS \n"
 sleep 2
 cd /opt/
