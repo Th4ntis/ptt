@@ -162,8 +162,20 @@ curl -o /home/$USER/BurpSuite_Community_2020_9_1.sh "https://portswigger.net/bur
 chmod +x /home/$USER/BurpSuite_Community_2020_9_1.sh
 sudo ./BurpSuite_Community_2020_9_1.sh
 sudo rm -r /home/$USER/BurpSuite*
-echo -e "\n $greenplus burpsuite install complete \n"
+echo -e "\n $greenplus Burpsuite install complete \n"
 sleep 2
+
+#echo -e "\n $greenplus Installing Nessus \n"
+#sleep 2
+#X
+#echo -e "\n $greenplus Nessus install complete \n"
+#sleep 2
+
+#echo -e "\n $greenplus Installing OpenVAS \n"
+#sleep 2
+#X
+#echo -e "\n $greenplus OpenVAS install complete \n"
+#sleep 2
 
 echo -e "\n $greenplus Installing BeEF \n"
 sleep 2
