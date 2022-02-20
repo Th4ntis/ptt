@@ -15,7 +15,7 @@ blinkexclaim='\e[1;31m[\e[5;31m!!\e[0m\e[1;31m]\e[0m'
 
 sudo apt update && sudo apt update -y 
 echo -e "\n $greenplus Installing list of tools through apt \n"
-sudo apt install -y nmap tshark tcpdump wireshark gobuster dirb net-tools curl git default-jre python3 python3-pip
+sudo apt install -y nmap tshark tcpdump wireshark gobuster dirb net-tools curl git default-jre python3 python3-pip libnetfilter-queue-dev libusb-1.0-0-dev libpcap-dev
 echo -e "\n $greenplus Complete! \n"
 
 # Downloads and Installs GO, adds it to $PATH
@@ -31,12 +31,10 @@ echo -e "\n $greenplus Installing Bettercap \n"
 sleep 2
 go install github.com/bettercap/bettercap@latest
 echo "alias bettercap='sudo ~/.go/bin/bettercap' >> ~/.zshrc"
-source ~/.zshrc
 
 #Installs Bettercap WebUI
 sudo ~/.go/bin/bettercap -eval "caplets.update; ui.update; q"
 echo "alias bettercap-webui='sudo ~/.go/bin/bettercap -caplet http-ui' >> ~/.zshrc"
-source ~/.zshrc
 echo -e "\n $greenplus bettercap install complete \n"
 sleep 2
 
@@ -185,7 +183,6 @@ cd /opt/
 sudo git clone https://github.com/beefproject/beef.git && cd beef
 sudo ./install
 echo "alias beef='cd /opt/beef && sudo ./beef' >> ~/.zshrc"
-source ~/.zshrc
 echo -e "\n $greenplus BeEF install complete \n"
 sleep 2
 
@@ -245,7 +242,6 @@ cd /opt/
 sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git
 sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/dirbuster/DirBuster-1.0-RC1.sh
 echo "alias dirbuster='sudo /opt/dirbuster/DirBuster-1.0-RC1.sh' >> ~/.zshrc"
-source .zshrc
 echo -e "\n $greenplus DirBuster install complete \n"
 sleep 2
 
@@ -287,7 +283,6 @@ cd /opt/
 sudo git clone https://github.com/laramies/theHarvester.git && cd theHarvester
 sudo python3 -m pip install -r requirements/base.txt
 echo "alias theHarvester='cd /opt/theHarvester && python3 theHarvester.py -h' >> ~/.zshrc"
-source ~/.zshrc
 echo -e "\n $greenplus Harvester install complete \n"
 sleep 2
 
@@ -296,7 +291,6 @@ sleep 2
 cd /opt/
 sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
 echo "alias sqlmap='python3 /opt/sqlmap/sqlmap.py' >> ~/.zshhrc"
-source ~/.zshrc
 echo -e "\n $greenplus SQLMap install complete \n"
 sleep 2
 
