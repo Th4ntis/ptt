@@ -290,7 +290,7 @@ echo -e "\n $greenplus Installing SQLMap \n"
 sleep 2
 cd /opt/
 sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
-echo "alias sqlmap='python3 /opt/sqlmap/sqlmap.py' >> ~/.zshhrc"
+echo "alias sqlmap='python3 /opt/sqlmap/sqlmap.py' >> ~/.zshrc"
 echo -e "\n $greenplus SQLMap install complete \n"
 sleep 2
 
