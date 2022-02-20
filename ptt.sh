@@ -158,18 +158,20 @@ sleep 2
 echo -e "\n $greenplus Installing Burpsuite \n"
 sleep 2
 cd /home/$USER/
-curl -o /home/$USER/BurpSuite_Community_2020_9_1.sh "https://portswigger.net/burp/releases/download?product=community&version=2020.9.1&type=Linux"
+curl -o /home/$USER/BurpSuite_Community_2020_9_1.sh "https://portswigger.net/burp/releases/download?product=community&version=2022.1.1&type=Linux"
 chmod +x /home/$USER/BurpSuite_Community_2020_9_1.sh
 sudo ./BurpSuite_Community_2020_9_1.sh
 sudo rm -r /home/$USER/BurpSuite*
 echo -e "\n $greenplus Burpsuite install complete \n"
 sleep 2
 
-#echo -e "\n $greenplus Installing Nessus \n"
-#sleep 2
-#X
-#echo -e "\n $greenplus Nessus install complete \n"
-#sleep 2
+echo -e "\n $greenplus Installing Nessus \n"
+sleep 2
+wget -O /home/$USER/Nessus-10.1.1-ubuntu1110_amd64.deb "https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/15341/download?i_agree_to_tenable_license_agreement=true"
+sudo dpkg -i Nessus-10.1.1-ubuntu1110_amd64.deb;sudo apt install -f
+sudo rm /home/$USER/Nessus*.deb
+echo -e "\n $greenplus Nessus install complete \n"
+sleep 2
 
 #echo -e "\n $greenplus Installing OpenVAS \n"
 #sleep 2
