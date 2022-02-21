@@ -222,9 +222,7 @@ install_burpsuite() {
 install_nessus() {
 	echo -e "\n $greenplus Installing Nessus \n"
 	sleep 2
-	wget -O /home/$USER/Nessus-10.1.1-ubuntu1110_amd64.deb "https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/15341/download?i_agree_to_tenable_license_agreement=true"
-	sudo dpkg -i Nessus-10.1.1-ubuntu1110_amd64.deb;sudo apt install -f
-	sudo rm /home/$USER/Nessus*.deb
+	xdg-open https://www.tenable.com/downloads/nessus?loginAttempted=true
 	echo -e "\n $greenplus Nessus install complete \n"
 	sleep 2
 	}
@@ -322,12 +320,12 @@ install_john() {
 	sleep 2
 	cd /opt/
 	sudo apt-get -y install git build-essential libssl-dev zlib1g-dev yasm pkg-config libgmp-dev libpcap-dev libbz2-dev nvidia-opencl-dev cmake bison flex clang
-	cd /opt/john/src
 	sudo git clone --recursive https://github.com/teeshop/rexgen.git && cd rexgen
 	sudo ./install.sh
+	sudo ldconfig
 	cd /opt/
 	sudo git clone https://github.com/openwall/john -b bleeding-jumbo john
-	cd /opt/john/
+	cd /opt/john/src
 	sudo ./configure --enable-rexgen && sudo make -s clean && sudo make -sj4
 	sudo make shell-completion
 	echo -e "\n $greenplus John install complete \n"
