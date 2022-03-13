@@ -26,6 +26,7 @@ install() {
 	install_mdk4
 	install_unicorn
 	install_setoolkit
+	install_bloodhound
 	install_metasploit
 	install_impacket
 	install_burpsuite
@@ -38,6 +39,8 @@ install() {
 	install_dirbuster
 	install_john
 	install_seclists
+	install_nikto
+	install_smbmap
 	install_hydra
 	install_harvester
 	install_sqlmap
@@ -219,6 +222,14 @@ install_burpsuite() {
 	sleep 2
 	}
 
+install_bloodhound() {
+	wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
+	sudo echo 'deb https://debian.neo4j.com stable 4.0' > /etc/apt/sources.list.d/neo4j.list
+	sudo apt update
+	sudo apt install neo4j
+	sudo systemctl stop neo4j
+	}
+
 install_nessus() {
 	echo -e "\n $greenplus Installing Nessus \n"
 	sleep 2
@@ -351,6 +362,17 @@ install_hydra() {
 	sudo make install
 	echo -e "\n $greenplus THC-Hydra install complete \n"
 	sleep 2
+	}
+
+install_nikto() {
+	cd /opt/
+	sudo git clone https://github.com/sullo/nikto	
+	}
+
+install_smbmap() {
+	cd /opt/
+	sudo git clone https://github.com/ShawnDEvans/smbmap.git
+	cd smbmap && sudo python3 -m pip install -r requirements.txt
 	}
 
 install_harvester() {
