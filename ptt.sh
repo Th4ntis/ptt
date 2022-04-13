@@ -37,6 +37,7 @@ install() {
 	install_bully
 	install_cowpatty
 	install_dirbuster
+	install_enum4linux
 	install_john
 	install_seclists
 	install_nikto
@@ -323,6 +324,15 @@ install_dirbuster() {
 	sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/dirbuster/DirBuster-1.0-RC1.sh
 #	echo "alias dirbuster='sudo /opt/dirbuster/DirBuster-1.0-RC1.sh' >> ~/.zshrc"
 	echo -e "\n $greenplus DirBuster install complete \n"
+	sleep 2
+	}
+
+install_enum4linux() {
+	echo -e "\n $greenplus Installing enum4linux \n"
+	sleep 2
+	cd /opt/
+	sudo git clone https://gitlab.com/kalilinux/packages/enum4linux.git
+	echo -e "\n $greenplus enum4Linux install complete \n"
 	sleep 2
 	}
 
