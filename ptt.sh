@@ -32,10 +32,6 @@ install() {
 	install_burpsuite
 	install_nessus
 	install_beef
-	install_pixie
-	install_reaver
-	install_bully
-	install_cowpatty
 	install_dirbuster
 	install_enum4linux
 	install_john
@@ -255,64 +251,6 @@ install_beef() {
 	sudo ./install
 #	echo "alias beef='cd /opt/beef && sudo ./beef' >> ~/.zshrc"
 	echo -e "\n $greenplus BeEF install complete \n"
-	sleep 2
-	}
-
-install_pixie() {
-	echo -e "\n $greenplus Installing PixieWPS \n"
-	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/wiire/pixiewps
-	cd pixiewps/
-	sudo make
-	sudo make install
-	cd /opt/
-	echo -e "\n $greenplus pixie install complete \n"
-	sleep 2
-	}
-
-install_reaver() {
-	echo -e "\n $greenplus Installing Reaver \n"
-	sleep 2
-	sudo apt install -y build-essential libpcap-dev
-	cd /opt/
-	sudo git clone https://github.com/t6x/reaver-wps-fork-t6x
-	cd reaver-wps-fork-t6x*
-	cd src
-	sudo ./configure
-	sudo make
-	sudo make install
-	cd /opt/
-	echo -e "\n $greenplus reaver install complete \n"
-	sleep 2
-	}
-
-install_bully() {
-	echo -e "\n $greenplus Installing Bully \n"
-	sleep 2
-	sudo apt install -y build-essential libpcap-dev
-	cd /opt/
-	sudo git clone https://github.com/kimocoder/bully.git
-	cd bully*/ && cd src/
-	sudo make
-	sudo make install
-	cd /opt/
-	echo -e "\n $greenplus bully install complete \n"
-	sleep 2
-	}
-
-install_cowpatty() {
-	echo -e "\n $greenplus Installing Cowpatty \n"
-	sleep 2
-	cd /opt/
-	sudo wget http://www.willhackforsushi.com/code/cowpatty/4.6/cowpatty-4.6.tgz
-	sudo tar zxfv cowpatty-4.6.tgz
-	cd cowpatty-4.6
-	sudo make
-	sudo make install
-	cd /opt/
-	sudo rm cowpatty-4.6.tgz
-	echo -e "\n $greenplus cowpatty install complete \n"
 	sleep 2
 	}
 
