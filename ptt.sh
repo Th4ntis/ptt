@@ -13,12 +13,12 @@ greenplus='\e[1;33m[++]\e[0m'
 install() {
 	sudo apt update && sudo apt update -y 
 	echo -e "\n $greenplus Installing list of tools through apt \n"
-	sudo apt install -y nmap tshark tcpdump wireshark gobuster dirb net-tools curl git default-jre python3 python3-pip libnetfilter-queue-dev libusb-1.0-0-dev libpcap-dev
+	sudo apt install -y autoconf automake bison build-essential clang cmake curl default-jre dirb ethtool flex git gobuster hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
 	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
 	install_kismet
-	install_aircrack
+#	install_aircrack
 	install_hashcat
 	install_hcxdumptool
 	install_hcxtools
@@ -60,9 +60,7 @@ install_bettercap() {
 	echo -e "\n $greenplus Installing Bettercap \n"
 	sleep 2
 	go install github.com/bettercap/bettercap@latest
-#	echo "alias bettercap='sudo ~/.go/bin/bettercap' >> ~/.zshrc"
 	sudo ~/.go/bin/bettercap -eval "caplets.update; ui.update; q"
-#	echo "alias bettercap-webui='sudo ~/.go/bin/bettercap -caplet http-ui' >> ~/.zshrc"
 	echo -e "\n $greenplus bettercap install complete \n"
 	sleep 2
 	}
@@ -73,41 +71,36 @@ install_kismet() {
 	sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
 	wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
 	echo 'deb https://www.kismetwireless.net/repos/apt/release/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list
-	sudo apt update >/dev/null 2>&1
+	sudo apt update
 	sudo apt install -y kismet
 	sudo usermod -aG kismet $USER
-	sudo apt upgrade -y
 	echo -e "\n $greenplus kismet install complete \n"
 	sleep 2
 	}
 
-install_aircrack() {
-	echo -e "\n $greenplus Installing Aircrack \n"
-	sleep 2
-	sudo apt install -y build-essential autoconf automake libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre3-dev libhwloc-dev libcmocka-dev hostapd wpasupplicant tcpdump screen iw usbutils
-	cd /opt/
-	sudo wget https://download.aircrack-ng.org/aircrack-ng-1.6.tar.gz
-	sudo tar -zxvf aircrack-ng-1.6.tar.gz
-	cd aircrack-ng-1.6
-	sudo autoreconf -i
-	./configure --with-experimental
-	sudo make
-	sudo make install
-	sudo ldconfig
-	cd /opt/
-	sudo rm aircrack-ng-1.6.tar.gz
-	echo -e "\n $greenplus aircrack install complete \n"
-	sleep 2
-	}
+#install_aircrack() {
+#	echo -e "\n $greenplus Installing Aircrack \n"
+#	sleep 2
+#	sudo apt install -y build-essential autoconf automake libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre3-dev libhwloc-dev libcmocka-dev hostapd wpasupplicant tcpdump screen iw usbutils
+#	cd /opt/
+#	sudo wget https://download.aircrack-ng.org/aircrack-ng-1.6.tar.gz
+#	sudo tar -zxvf aircrack-ng-1.6.tar.gz
+#	cd aircrack-ng-1.6
+#	sudo autoreconf -i
+#	./configure --with-experimental
+#	sudo make
+#	sudo make install
+#	sudo ldconfig
+#	cd /opt/
+#	sudo rm aircrack-ng-1.6.tar.gz
+#	echo -e "\n $greenplus aircrack install complete \n"
+#	sleep 2
+#	}
 
 install_hashcat() {
 	echo -e "\n $greenplus Installing hashcat \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/hashcat/hashcat
-	cd hashcat
-	sudo make
-	sudo make install
+	cd /opt/ && sudo git clone https://github.com/hashcat/hashcat && cd hashcat && sudo make && sudo make install
 	echo -e "\n $greenplus hashcat install complete \n"
 	sleep 2
 	}
@@ -115,11 +108,7 @@ install_hashcat() {
 install_hcxdumptool() {
 	echo -e "\n $greenplus Installing HCXDumptool \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/ZerBea/hcxdumptool
-	cd hcxdumptool
-	sudo make
-	sudo make install
+	cd /opt/ && sudo git clone https://github.com/ZerBea/hcxdumptool && cd hcxdumptool && sudo make && sudo make install
 	echo -e "\n $greenplus hcxdumptool install complete \n"
 	sleep 2
 	}
@@ -127,12 +116,7 @@ install_hcxdumptool() {
 install_hcxtools() {
 	echo -e "\n $greenplus Installing HCXTools \n"
 	sleep 2
-	cd /opt/
-	sudo apt install -y libcurl4-openssl-dev libssl-dev zlib1g-dev
-	sudo git clone https://github.com/ZerBea/hcxtools.git
-	cd hcxtools
-	sudo make
-	sudo make install
+	cd /opt/ && sudo git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && sudo make && sudo make install
 	echo -e "\n $greenplus hcxtools install complete \n"
 	sleep 2
 	}
@@ -140,11 +124,7 @@ install_hcxtools() {
 install_hashcat-utils() {
 	echo -e "\n $greenplus Installing Hashat-Utils \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/hashcat/hashcat-utils.git
-	cd hashcat-utils/src
-	sudo make
-	sudo cp *bin ../bin
+	cd /opt/ && sudo git clone https://github.com/hashcat/hashcat-utils.git && cd hashcat-utils/src && sudo make && sudo cp *bin ../bin
 	echo -e "\n $greenplus hashcat-utils install complete \n"
 	sleep 2
 	}
@@ -152,13 +132,7 @@ install_hashcat-utils() {
 install_mdk4() {
 	echo -e "\n $greenplus Installing MDK4 \n"
 	sleep 2
-	sudo apt install -y pkg-config libnl-3-dev libnl-genl-3-dev libpcap-dev
-	cd /opt/
-	sudo git clone https://github.com/aircrack-ng/mdk4
-	cd mdk4
-	sudo make
-	sudo make install
-	cd /opt/
+	cd /opt/ && sudo git clone https://github.com/aircrack-ng/mdk4 && cd mdk4 && sudo make && sudo make install
 	echo -e "\n $greenplus mdk4 install complete \n"
 	sleep 2
 	}
@@ -166,8 +140,7 @@ install_mdk4() {
 install_unicorn() {
 	echo -e "\n $greenplus Installing Unicorn \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/trustedsec/unicorn.git
+	cd /opt/ && sudo git clone https://github.com/trustedsec/unicorn.git
 	echo -e "\n $greenplus unicorn install complete \n"
 	sleep 2
 	}
@@ -175,12 +148,7 @@ install_unicorn() {
 install_setoolkit() {
 	echo -e "\n $greenplus Installing SEToolkit \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/
-	cd setoolkit
-	sudo pip3 install -r requirements.txt
-	sudo python3 setup.py
-	cd /opt/
+	cd /opt/ && sudo git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/ && cd setoolkit && sudo pip3 install -r requirements.txt && sudo python3 setup.py
 	echo -e "\n $greenplus SET install complete \n"
 	sleep 2
 	}
@@ -200,9 +168,7 @@ install_metasploit() {
 install_impacket() {
 	echo -e "\n $greenplus Installing Impacket \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/SecureAuthCorp/impacket.git && cd impacket
-	sudo python3 -m pip install .
+	cd /opt/ && sudo git clone https://github.com/SecureAuthCorp/impacket.git && cd impacket && sudo python3 -m pip install .
 	echo -e "\n $greenplus Impacket install complete \n"
 	sleep 2
 	}
@@ -228,11 +194,10 @@ install_bloodhound() {
 	}
 
 install_nessus() {
-	echo -e "\n $greenplus Installing Nessus \n"
+	echo -e "\n $greenplus Opening Nessus Download Page... \n"
 	sleep 2
 	xdg-open https://www.tenable.com/downloads/nessus?loginAttempted=true
-	echo -e "\n $greenplus Nessus install complete \n"
-	sleep 2
+	sleep 5
 	}
 
 #install_openvas() {
@@ -246,10 +211,7 @@ install_nessus() {
 install_beef() {
 	echo -e "\n $greenplus Installing BeEF \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/beefproject/beef.git && cd beef
-	sudo ./install
-#	echo "alias beef='cd /opt/beef && sudo ./beef' >> ~/.zshrc"
+	cd /opt/ && sudo git clone https://github.com/beefproject/beef.git && cd beef && sudo ./install
 	echo -e "\n $greenplus BeEF install complete \n"
 	sleep 2
 	}
@@ -257,10 +219,7 @@ install_beef() {
 install_dirbuster() {
 	echo -e "\n $greenplus Installing DirBuster \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git
-	sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/dirbuster/DirBuster-1.0-RC1.sh
-#	echo "alias dirbuster='sudo /opt/dirbuster/DirBuster-1.0-RC1.sh' >> ~/.zshrc"
+	cd /opt/ && sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git && sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/dirbuster/DirBuster-1.0-RC1.sh
 	echo -e "\n $greenplus DirBuster install complete \n"
 	sleep 2
 	}
@@ -268,8 +227,7 @@ install_dirbuster() {
 install_enum4linux() {
 	echo -e "\n $greenplus Installing enum4linux \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://gitlab.com/kalilinux/packages/enum4linux.git
+	cd /opt/ && sudo git clone https://gitlab.com/kalilinux/packages/enum4linux.git
 	echo -e "\n $greenplus enum4Linux install complete \n"
 	sleep 2
 	}
@@ -277,16 +235,8 @@ install_enum4linux() {
 install_john() {
 	echo -e "\n $greenplus Installing John The Ripper \n"
 	sleep 2
-	cd /opt/
-	sudo apt-get -y install git build-essential libssl-dev zlib1g-dev yasm pkg-config libgmp-dev libpcap-dev libbz2-dev nvidia-opencl-dev cmake bison flex clang
-	sudo git clone --recursive https://github.com/teeshop/rexgen.git && cd rexgen
-	sudo ./install.sh
-	sudo ldconfig
-	cd /opt/
-	sudo git clone https://github.com/openwall/john -b bleeding-jumbo john
-	cd /opt/john/src
-	sudo ./configure --enable-rexgen && sudo make -s clean && sudo make -sj4
-	sudo make shell-completion
+	cd /opt/ && sudo git clone --recursive https://github.com/teeshop/rexgen.git && cd rexgen && sudo ./install.sh && sudo ldconfig
+	cd /opt/ && sudo git clone https://github.com/openwall/john -b bleeding-jumbo john && cd /opt/john/src && sudo ./configure --enable-rexgen && sudo make -s clean && sudo make -sj4
 	echo -e "\n $greenplus John install complete \n"
 	sleep 2
 	}
@@ -294,8 +244,7 @@ install_john() {
 install_seclists() {
 	echo -e "\n $greenplus Installing SecLists \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/danielmiessler/SecLists.git
+	cd /opt/ && sudo git clone https://github.com/danielmiessler/SecLists.git
 	echo -e "\n $greenplus SecLists install complete \n"
 	sleep 2
 	}
@@ -303,33 +252,31 @@ install_seclists() {
 install_hydra() {
 	echo -e "\n $greenplus Installing THC-hydra \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra
-	sudo ./configure
-	sudo make
-	sudo make install
+	cd /opt/ && sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra && sudo ./configure && sudo make && sudo make install
 	echo -e "\n $greenplus THC-Hydra install complete \n"
 	sleep 2
 	}
 
 install_nikto() {
-	cd /opt/
-	sudo git clone https://github.com/sullo/nikto	
+	echo -e "\n $greenplus Installing Nikto \n"
+	sleep 2
+	cd /opt/ && sudo git clone https://github.com/sullo/nikto
+	echo -e "\n $greenplus Nikto install complete \n"
+	sleep 2
 	}
 
 install_smbmap() {
-	cd /opt/
-	sudo git clone https://github.com/ShawnDEvans/smbmap.git
-	cd smbmap && sudo python3 -m pip install -r requirements.txt
+	echo -e "\n $greenplus Installing SMBMap \n"
+	sleep 2
+	cd /opt/ &&	sudo git clone https://github.com/ShawnDEvans/smbmap.git && cd smbmap && sudo python3 -m pip install -r requirements.txt
+	echo -e "\n $greenplus SMBMap install complete \n"
+	sleep 2
 	}
 
 install_harvester() {
 	echo -e "\n $greenplus Installing Harvester \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/laramies/theHarvester.git && cd theHarvester
-	sudo python3 -m pip install -r requirements/base.txt
-#	echo "alias theHarvester='cd /opt/theHarvester && python3 theHarvester.py -h' >> ~/.zshrc"
+	cd /opt/ && sudo git clone https://github.com/laramies/theHarvester.git && cd theHarvester && sudo python3 -m pip install -r requirements/base.txt
 	echo -e "\n $greenplus Harvester install complete \n"
 	sleep 2
 	}
@@ -337,9 +284,7 @@ install_harvester() {
 install_sqlmap() {
 	echo -e "\n $greenplus Installing SQLMap \n"
 	sleep 2
-	cd /opt/
-	sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
-#	echo "alias sqlmap='python3 /opt/sqlmap/sqlmap.py' >> ~/.zshrc"
+	cd /opt/ && sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
 	echo -e "\n $greenplus SQLMap install complete \n"
 	sleep 2
 	}
@@ -347,8 +292,7 @@ install_sqlmap() {
 install_peass() {
 	echo -e "\n $greenplus Installing PEASS \n"
 	sleep 2
-	cd /opt/
-	sudo git clone https://github.com/carlospolop/PEASS-ng.git
+	cd /opt/ && sudo git clone https://github.com/carlospolop/PEASS-ng.git
 	echo -e "\n $greenplus PEASS install complete \n"
 	sleep 2
 	}
@@ -361,9 +305,7 @@ ask_to_install_rtl8812au() {
 rtl8812au_install () {
 	echo -e "\n $greenplus Installing RTL8812AU driver \n"
     sleep 2
-    cd /opt/
-    sudo git clone -b v5.6.4.2 https://github.com/aircrack-ng/rtl8812au.git
-	cd rtl8812au && sudo make && sudo make install
+    cd /opt/ && sudo git clone -b v5.6.4.2 https://github.com/aircrack-ng/rtl8812au.git && cd rtl8812au && sudo make && sudo make install
     echo -e "\n $greenplus RTL8812AU driver install complete \n \n"
     sleep 2
     }
