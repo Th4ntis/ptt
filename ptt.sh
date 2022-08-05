@@ -13,12 +13,11 @@ greenplus='\e[1;33m[++]\e[0m'
 install() {
 	sudo apt update && sudo apt update -y 
 	echo -e "\n $greenplus Installing list of tools through apt \n"
-	sudo apt install -y autoconf automake bison build-essential clang cmake curl default-jre dirb ethtool flex git gobuster hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
+	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb ethtool flex git gobuster hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
 	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
 	install_kismet
-#	install_aircrack
 	install_hashcat
 	install_hcxdumptool
 	install_hcxtools
@@ -77,25 +76,6 @@ install_kismet() {
 	echo -e "\n $greenplus kismet install complete \n"
 	sleep 2
 	}
-
-#install_aircrack() {
-#	echo -e "\n $greenplus Installing Aircrack \n"
-#	sleep 2
-#	sudo apt install -y build-essential autoconf automake libtool pkg-config libnl-3-dev libnl-genl-3-dev libssl-dev ethtool shtool rfkill zlib1g-dev libpcap-dev libsqlite3-dev libpcre3-dev libhwloc-dev libcmocka-dev hostapd wpasupplicant tcpdump screen iw usbutils
-#	cd /opt/
-#	sudo wget https://download.aircrack-ng.org/aircrack-ng-1.6.tar.gz
-#	sudo tar -zxvf aircrack-ng-1.6.tar.gz
-#	cd aircrack-ng-1.6
-#	sudo autoreconf -i
-#	./configure --with-experimental
-#	sudo make
-#	sudo make install
-#	sudo ldconfig
-#	cd /opt/
-#	sudo rm aircrack-ng-1.6.tar.gz
-#	echo -e "\n $greenplus aircrack install complete \n"
-#	sleep 2
-#	}
 
 install_hashcat() {
 	echo -e "\n $greenplus Installing hashcat \n"
@@ -161,6 +141,9 @@ install_metasploit() {
 	chmod 755 /home/$USER/msfinstall
 	./msfinstall
 	rm /home/$USER/msfinstall
+
+	sudo apt-key export 2007B954 | sudo gpg --dearmour -o /usr/share/keyrings/metasploit.gpg
+	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main" > /etc/apt/sources.list.d/metasploit-framework.list
 	echo -e "\n $greenplus metasploit install complete \n"
 	sleep 2
 	}
@@ -199,14 +182,6 @@ install_nessus() {
 	xdg-open https://www.tenable.com/downloads/nessus?loginAttempted=true
 	sleep 5
 	}
-
-#install_openvas() {
-	#echo -e "\n $greenplus Installing OpenVAS \n"
-	#sleep 2
-	#X
-	#echo -e "\n $greenplus OpenVAS install complete \n"
-	#sleep 2
-#	}
 
 install_beef() {
 	echo -e "\n $greenplus Installing BeEF \n"
