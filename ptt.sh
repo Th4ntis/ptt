@@ -36,6 +36,8 @@ install() {
 	install_john
 	install_seclists
 	install_nikto
+	install_responder
+	install_evilwinrm
 	install_smbmap
 	install_hydra
 	install_harvester
@@ -228,6 +230,24 @@ install_hydra() {
 	sleep 2
 	cd /opt/ && sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra && sudo ./configure && sudo make && sudo make install
 	echo -e "\n $greenplus THC-Hydra install complete \n"
+	sleep 2
+	}
+
+install_responder() {
+	echo -e "\n $greenplus Installing Responder \n"
+	sleep 2
+	cd /opt/ && sudo git clone https://github.com/lgandx/Responder.git
+	echo -e "\n $greenplus Responder install complete \n"
+	sleep 2
+	}
+
+install_evilwinrm() {
+	echo -e "\n $greenplus Installing Evil-WinRM \n"
+	sleep 2
+	sudo gem install bundler winrm winrm-fs stringio logger fileutils
+	cd /opt/ && sudo git clone https://github.com/Hackplayers/evil-winrm.git
+	sudo gem install evil-winrm
+	echo -e "\n $greenplus Evil-WinRM install complete \n"
 	sleep 2
 	}
 
