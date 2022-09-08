@@ -69,9 +69,8 @@ install_kismet() {
 	sleep 2
 	sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
 	wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-	echo 'deb https://www.kismetwireless.net/repos/apt/release/focal focal main' | sudo tee /etc/apt/sources.list.d/kismet.list
-	sudo apt update
-	sudo apt install -y kismet
+	echo 'deb https://www.kismetwireless.net/repos/apt/release/jammy jammy main' | sudo tee /etc/apt/sources.list.d/kismet.list
+	sudo apt update && sudo apt install -y kismet
 	sudo usermod -aG kismet $USER
 	echo -e "\n $greenplus kismet install complete \n"
 	sleep 2
