@@ -13,7 +13,7 @@ greenplus='\e[1;33m[++]\e[0m'
 install() {
 	sudo apt update && sudo apt update -y 
 	echo -e "\n $greenplus Installing list of tools through apt \n"
-	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb ethtool flex git gobuster hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
+	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb ethtool flex git gobuster gpsd gpsd-clients gpsd-tools hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
 	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
