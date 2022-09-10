@@ -13,10 +13,11 @@ greenplus='\e[1;33m[++]\e[0m'
 install() {
 	sudo apt update && sudo apt update -y 
 	echo -e "\n $greenplus Installing list of tools through apt \n"
-	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb ethtool flex git gobuster gpsd gpsd-clients gpsd-tools hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
+	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb ethtool flex git gobuster golang-go gpsd gpsd-clients gpsd-tools hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
 	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
+	install_kerbrute
 	install_kismet
 	install_hashcat
 	install_hcxdumptool
@@ -49,12 +50,10 @@ install() {
 	}
 
 install_go() {
-	curl -OL https://go.dev/dl/go1.17.7.linux-amd64.tar.gz
-	sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.7.linux-amd64.tar.gz
-	rm go1.17.7.linux-amd64.tar.gz
-	echo "export GOPATH=~/.go" >> ~/.profile
-	echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.profile
-	source ~/.profile
+	echo 'export GOPATH="$HOME/.go"' >> ~/.zshrc
+	echo 'export PATH="$PATH:${GOPATH//://bin:}/bin"' >> ~/.zshrc
+	source ~/.zshrc
+	mkdir -p ~/go/{bin,pkg,src}
 	}
 
 install_bettercap() {
@@ -62,7 +61,15 @@ install_bettercap() {
 	sleep 2
 	go install github.com/bettercap/bettercap@latest
 	sudo ~/.go/bin/bettercap -eval "caplets.update; ui.update; q"
-	echo -e "\n $greenplus bettercap install complete \n"
+	echo -e "\n $greenplus Bettercap install complete \n"
+	sleep 2
+	}
+
+install_kerbrute() {
+	echo -e "\n $greenplus Installing Kerbrute \n"
+	sleep 2
+	go install github.com/ropnop/kerbrute@latest
+	echo -e "\n $greenplus Kerbrute install complete \n"
 	sleep 2
 	}
 
