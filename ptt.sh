@@ -40,6 +40,7 @@ install() {
 	install_nikto
 	install_responder
 	install_evilwinrm
+	install_spiderfoot
 	install_smbmap
 	install_hydra
 	install_harvester
@@ -126,6 +127,13 @@ install_hashcat-utils() {
 	sleep 2
 	}
 
+install_spiderfoot() {
+	git clone https://github.com/smicallef/spiderfoot.git
+	cd spiderfoot
+	pip3 install -r requirements.txt
+#	python3 ./sf.py -l 127.0.0.1:5001 # Starts Spiderfoot
+	}
+
 install_mdk4() {
 	echo -e "\n $greenplus Installing MDK4 \n"
 	sleep 2
@@ -191,6 +199,7 @@ install_bloodhound() {
 	sudo apt update
 	sudo apt install neo4j
 	sudo systemctl stop neo4j
+	xdg-open https://github.com/BloodHoundAD/BloodHound/releases
 	}
 
 install_nessus() {
