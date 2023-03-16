@@ -87,9 +87,12 @@ install_kismet() {
 	echo -e "\n $greenplus Installing Kismet \n"
 	sleep 2
 	sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
-	wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
-	echo 'deb https://www.kismetwireless.net/repos/apt/git/jammy jammy main' | sudo tee /etc/apt/sources.list.d/kismet.list
-	sudo apt update && sudo apt install -y kismet
+	sudo apt install build-essential git libwebsockets-dev pkg-config rtl-433 zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0-0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libubertooth-dev libbtbb-dev
+	cd /opt/ && sudo git clone https://www.kismetwireless.net/git/kismet.git && cd kismet
+	sudo ./configure
+	sudo make
+	sudo make -j$(nproc)
+	sudo make suidinstall
 	sudo usermod -aG kismet $USER
 	echo -e "\n $greenplus kismet install complete \n"
 	sleep 2
@@ -184,11 +187,7 @@ install_impacket() {
 install_burpsuite() {
 	echo -e "\n $greenplus Installing Burpsuite \n"
 	sleep 2
-	cd /home/$USER/
-	curl -o /home/$USER/BurpSuite_Community_2020_9_1.sh "https://portswigger.net/burp/releases/download?product=community&version=2022.1.1&type=Linux"
-	chmod +x /home/$USER/BurpSuite_Community_2020_9_1.sh
-	sudo ./BurpSuite_Community_2020_9_1.sh
-	sudo rm -r /home/$USER/BurpSuite*
+	xdg-open https://portswigger.net/burp/communitydownload
 	echo -e "\n $greenplus Burpsuite install complete \n"
 	sleep 2
 	}
