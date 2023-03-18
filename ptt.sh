@@ -13,7 +13,7 @@ greenplus='\e[1;33m[++]\e[0m'
 install() {
 	sudo apt update && sudo apt update -y 
 	echo -e "\n $greenplus Installing list of tools through apt \n"
-	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb docker.io docker-compose ethtool flex git golang-go gpsd gpsd-clients gpsd-tools hostapd iw libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
+	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb docker.io docker-compose ethtool flex git golang-go gpsd gpsd-clients gpsd-tools hostapd iw john libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
 	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
@@ -35,7 +35,6 @@ install() {
 	install_beef
 	install_dirbuster
 	install_enum4linux
-	install_john
 	install_seclists
 	install_nikto
 	install_responder
@@ -55,7 +54,7 @@ install_go() {
 	echo 'export GOPATH="$HOME/.go"' >> ~/.zshrc
 	echo 'export PATH="$PATH:${GOPATH//://bin:}/bin"' >> ~/.zshrc
 	source ~/.zshrc
-	mkdir -p ~/go/{bin,pkg,src}
+	mkdir -p ~/.go/{bin,pkg,src}
 	}
 
 install_bettercap() {
@@ -229,15 +228,6 @@ install_enum4linux() {
 	sleep 2
 	cd /opt/ && sudo git clone https://gitlab.com/kalilinux/packages/enum4linux.git
 	echo -e "\n $greenplus enum4Linux install complete \n"
-	sleep 2
-	}
-
-install_john() {
-	echo -e "\n $greenplus Installing John The Ripper \n"
-	sleep 2
-	cd /opt/ && sudo git clone --recursive https://github.com/teeshop/rexgen.git && cd rexgen && sudo ./install.sh && sudo ldconfig
-	cd /opt/ && sudo git clone https://github.com/openwall/john -b bleeding-jumbo john && cd /opt/john/src && sudo ./configure --enable-rexgen && sudo make -s clean && sudo make -sj4
-	echo -e "\n $greenplus John install complete \n"
 	sleep 2
 	}
 
