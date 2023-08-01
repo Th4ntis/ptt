@@ -184,7 +184,7 @@ install_impacket() {
 install_burpsuite() {
 	echo -e "\n $greenplus Installing Burpsuite \n"
 	sleep 2
-	xdg-open https://portswigger.net/burp/communitydownload
+	firefox https://portswigger.net/burp/communitydownload
 	echo -e "\n $greenplus Burpsuite install complete \n"
 	sleep 2
 	}
@@ -195,13 +195,13 @@ install_bloodhound() {
 	sudo apt update
 	sudo apt install neo4j
 	sudo systemctl stop neo4j
-	xdg-open https://github.com/BloodHoundAD/BloodHound/releases
+	firefox https://github.com/BloodHoundAD/BloodHound/releases
 	}
 
 install_nessus() {
 	echo -e "\n $greenplus Opening Nessus Download Page... \n"
 	sleep 2
-	xdg-open https://www.tenable.com/downloads/nessus?loginAttempted=true
+	firefox https://www.tenable.com/downloads/nessus?loginAttempted=true
 	sleep 5
 	}
 
