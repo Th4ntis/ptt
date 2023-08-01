@@ -130,7 +130,7 @@ install_hashcat-utils() {
 	}
 
 install_spiderfoot() {
-	cd /opt/ && git clone https://github.com/smicallef/spiderfoot.git && cd spiderfoot && pip3 install -r requirements.txt
+	cd /opt/ && sudo git clone https://github.com/smicallef/spiderfoot.git && cd spiderfoot && pip3 install -r requirements.txt
 #	python3 ./sf.py -l 127.0.0.1:5001 # Starts Spiderfoot
 	}
 
@@ -153,7 +153,7 @@ install_unicorn() {
 install_setoolkit() {
 	echo -e "\n $greenplus Installing SEToolkit \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/ && cd setoolkit && sudo pip3 install -r requirements.txt && sudo python3 setup.py
+	cd /opt/ && sudo git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/ && cd setoolkit && pip3 install -r requirements.txt && python3 setup.py
 	echo -e "\n $greenplus SET install complete \n"
 	sleep 2
 	}
@@ -168,7 +168,7 @@ install_metasploit() {
 	rm /home/$USER/msfinstall
 
 	sudo apt-key export 2007B954 | sudo gpg --dearmour -o /usr/share/keyrings/metasploit.gpg
-	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main" > /etc/apt/sources.list.d/metasploit-framework.list
+	sudo echo "deb [arch=amd64 signed-by=/usr/share/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main" > /etc/apt/sources.list.d/metasploit-framework.list
 	echo -e "\n $greenplus metasploit install complete \n"
 	sleep 2
 	}
@@ -274,7 +274,7 @@ install_nikto() {
 install_smbmap() {
 	echo -e "\n $greenplus Installing SMBMap \n"
 	sleep 2
-	cd /opt/ &&	sudo git clone https://github.com/ShawnDEvans/smbmap.git && cd smbmap && sudo python3 -m pip install -r requirements.txt
+	cd /opt/ && sudo pip3 install smbmap
 	echo -e "\n $greenplus SMBMap install complete \n"
 	sleep 2
 	}
@@ -324,11 +324,11 @@ ask_to_install_cuda() {
 cuda_install () {
 	echo -e "\n $greenplus Installing Cuda \n"
     sleep 2
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
     sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-    wget https://developer.download.nvidia.com/compute/cuda/11.6.0/local_installers/cuda-repo-ubuntu2004-11-6-local_11.6.0-510.39.01-1_amd64.deb
-    sudo dpkg -i cuda-repo-ubuntu2004-11-6-local_11.6.0-510.39.01-1_amd64.deb
-    sudo apt-key add /var/cuda-repo-ubuntu2004-11-6-local/7fa2af80.pub
+    wget https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.1-535.86.10-1_amd64.deb
+    sudo dpkg -i cuda-repo-ubuntu2204-12-2-local_12.2.1-535.86.10-1_amd64.deb
+    sudo cp /var/cuda-repo-ubuntu2204-12-2-local/cuda-*-keyring.gpg /usr/share/keyrings/
     sudo apt update
     sudo apt -y install cuda
     rm cuda*
