@@ -168,8 +168,10 @@ install_metasploit() {
 	rm /home/$USER/msfinstall
 
 	sudo apt-key export 2007B954 | sudo gpg --dearmour -o /usr/share/keyrings/metasploit.gpg
-	sudo echo "deb [arch=amd64 signed-by=/usr/share/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main" > /etc/apt/sources.list.d/metasploit-framework.list
-	echo -e "\n $greenplus metasploit install complete \n"
+	sudo tee /etc/apt/sources.list.d/metasploit-framework.list << EOF > /dev/null
+	deb [arch=amd64 signed-by=/usr/share/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main
+ 	EOF
+ 	echo -e "\n $greenplus metasploit install complete \n"
 	sleep 2
 	}
 
