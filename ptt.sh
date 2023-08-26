@@ -86,7 +86,7 @@ install_kismet() {
 	echo -e "\n $greenplus Installing Kismet \n"
 	sleep 2
 	sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
-	sudo apt install -y build-essential git libwebsockets-dev pkg-config rtl-433 zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0-0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libubertooth-dev libbtbb-dev
+	sudo apt install -y build-essential git libwebsockets-dev pkg-config rtl-433 zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0-0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libubertooth-dev libbtbb-dev libmosquitto-dev
 	cd /opt/ && sudo git clone https://www.kismetwireless.net/git/kismet.git && cd kismet
 	sudo ./configure
 	sudo make
@@ -168,10 +168,8 @@ install_metasploit() {
 	rm /home/$USER/msfinstall
 
 	sudo apt-key export 2007B954 | sudo gpg --dearmour -o /usr/share/keyrings/metasploit.gpg
-	sudo tee /etc/apt/sources.list.d/metasploit-framework.list << EOF > /dev/null
-	deb [arch=amd64 signed-by=/usr/share/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main
- 	EOF
- 	echo -e "\n $greenplus metasploit install complete \n"
+ 	sudo echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main' | sudo tee /etc/apt/sources.list.d/metasploit-framework.list > /dev/null
+	echo -e "\n $greenplus metasploit install complete \n"
 	sleep 2
 	}
 
@@ -192,11 +190,8 @@ install_burpsuite() {
 	}
 
 install_bloodhound() {
-	wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
-	sudo echo 'deb https://debian.neo4j.com stable 4.0' > /etc/apt/sources.list.d/neo4j.list
-	sudo apt update
-	sudo apt install neo4j
-	sudo systemctl stop neo4j
+	sudo apt install -y openjdk-11-jdk apt-transport-https
+	firefox https://bloodhound.readthedocs.io/en/latest/installation/linux.html#install-neo4j
 	firefox https://github.com/BloodHoundAD/BloodHound/releases
 	}
 
