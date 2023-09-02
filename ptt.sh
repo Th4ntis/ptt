@@ -13,8 +13,8 @@ greenplus='\e[1;33m[++]\e[0m'
 install() {
 	sudo apt update && sudo apt update -y 
 	echo -e "\n $greenplus Installing list of tools through apt \n"
-	sudo apt install -y aircrack-ng autoconf automake bison build-essential clang cmake curl default-jre dirb docker.io docker-compose ethtool flex git golang-go gpsd gpsd-clients gpsd-tools hostapd iw john libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
-	echo -e "\n $greenplus Complete! \n"
+	sudo apt install -y aircrack-ng autoconf automake bettercap bison build-essential bully clang cmake crunch curl default-jre dirb docker.io docker-compose ethtool ettercap-common ettercap-graphical flex git golang-go gpsd gpsd-clients gpsd-tools hostapd iw john libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev lighttpd net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip reaver rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
+ 	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
 	install_kerbrute
@@ -198,7 +198,11 @@ install_bloodhound() {
 install_nessus() {
 	echo -e "\n $greenplus Opening Nessus Download Page... \n"
 	sleep 2
-	firefox https://www.tenable.com/downloads/nessus?loginAttempted=true
+	nessus_amd64_file=$(curl https://www.tenable.com/downloads/nessus\?loginAttempted\=true | grep -o -m1 -E "Nessus-[0-9]{1,2}.[0-9]{1}.[0-9]{1}-debian10_amd64.deb" | grep -m1 -i ".deb")
+	nessus_amd64="https://www.tenable.com/downloads/api/v2/pages/nessus/files/$nessus_amd64_file"
+	wget -q $nessus_amd64 -O /tmp/nessus_amd64.deb
+	sudo dpkg -i /tmp/nessus_amd64.deb
+	rm -f /tmp/nessus_amd64.deb
 	sleep 5
 	}
 
