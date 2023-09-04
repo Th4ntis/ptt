@@ -87,7 +87,7 @@ install_kismet() {
 	sleep 2
 	sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
 	sudo apt install -y build-essential git libwebsockets-dev pkg-config rtl-433 zlib1g-dev libnl-3-dev libnl-genl-3-dev libcap-dev libpcap-dev libnm-dev libdw-dev libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev libusb-1.0-0-dev python3 python3-setuptools python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libubertooth-dev libbtbb-dev libmosquitto-dev
-	cd /opt/ && sudo git clone https://www.kismetwireless.net/git/kismet.git && cd kismet
+	cd /usr/share/ && sudo git clone https://www.kismetwireless.net/git/kismet.git && cd kismet
 	sudo ./configure
 	sudo make
 	sudo make -j$(nproc)
@@ -100,7 +100,7 @@ install_kismet() {
 install_hashcat() {
 	echo -e "\n $greenplus Installing hashcat \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/hashcat/hashcat && cd hashcat && sudo make && sudo make install
+	cd /usr/share/ && sudo git clone https://github.com/hashcat/hashcat && cd hashcat && sudo make && sudo make install
 	echo -e "\n $greenplus hashcat install complete \n"
 	sleep 2
 	}
@@ -108,7 +108,7 @@ install_hashcat() {
 install_hcxdumptool() {
 	echo -e "\n $greenplus Installing HCXDumptool \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/ZerBea/hcxdumptool && cd hcxdumptool && sudo make && sudo make install
+	cd /usr/share/ && sudo git clone https://github.com/ZerBea/hcxdumptool && cd hcxdumptool && sudo make && sudo make install
 	echo -e "\n $greenplus hcxdumptool install complete \n"
 	sleep 2
 	}
@@ -116,7 +116,7 @@ install_hcxdumptool() {
 install_hcxtools() {
 	echo -e "\n $greenplus Installing HCXTools \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && sudo make && sudo make install
+	cd /usr/share/ && sudo git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && sudo make && sudo make install
 	echo -e "\n $greenplus hcxtools install complete \n"
 	sleep 2
 	}
@@ -124,20 +124,20 @@ install_hcxtools() {
 install_hashcat-utils() {
 	echo -e "\n $greenplus Installing Hashat-Utils \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/hashcat/hashcat-utils.git && cd hashcat-utils/src && sudo make && sudo cp *bin ../bin
+	cd /usr/share/ && sudo git clone https://github.com/hashcat/hashcat-utils.git && cd hashcat-utils/src && sudo make && sudo cp *bin ../bin
 	echo -e "\n $greenplus hashcat-utils install complete \n"
 	sleep 2
 	}
 
 install_spiderfoot() {
-	cd /opt/ && sudo git clone https://github.com/smicallef/spiderfoot.git && cd spiderfoot && pip3 install -r requirements.txt
+	cd /usr/share/ && sudo git clone https://github.com/smicallef/spiderfoot.git && cd spiderfoot && pip3 install -r requirements.txt
 #	python3 ./sf.py -l 127.0.0.1:5001 # Starts Spiderfoot
 	}
 
 install_mdk4() {
 	echo -e "\n $greenplus Installing MDK4 \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/aircrack-ng/mdk4 && cd mdk4 && sudo make && sudo make install
+	cd /usr/share/ && sudo git clone https://github.com/aircrack-ng/mdk4 && cd mdk4 && sudo make && sudo make install
 	echo -e "\n $greenplus mdk4 install complete \n"
 	sleep 2
 	}
@@ -145,7 +145,7 @@ install_mdk4() {
 install_unicorn() {
 	echo -e "\n $greenplus Installing Unicorn \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/trustedsec/unicorn.git
+	cd /usr/share/ && sudo git clone https://github.com/trustedsec/unicorn.git
 	echo -e "\n $greenplus unicorn install complete \n"
 	sleep 2
 	}
@@ -153,7 +153,7 @@ install_unicorn() {
 install_setoolkit() {
 	echo -e "\n $greenplus Installing SEToolkit \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/ && cd setoolkit && sudo pip3 install -r requirements.txt && sudo python3 setup.py
+	cd /usr/share/ && sudo git clone https://github.com/trustedsec/social-engineer-toolkit/ setoolkit/ && cd setoolkit && sudo pip3 install -r requirements.txt && sudo python3 setup.py
 	echo -e "\n $greenplus SET install complete \n"
 	sleep 2
 	}
@@ -176,7 +176,7 @@ install_metasploit() {
 install_impacket() {
 	echo -e "\n $greenplus Installing Impacket \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/SecureAuthCorp/impacket.git && cd impacket && sudo python3 -m pip install .
+	cd /usr/share/ && sudo git clone https://github.com/SecureAuthCorp/impacket.git && cd impacket && sudo python3 -m pip install .
 	echo -e "\n $greenplus Impacket install complete \n"
 	sleep 2
 	}
@@ -209,7 +209,7 @@ install_nessus() {
 install_beef() {
 	echo -e "\n $greenplus Installing BeEF \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/beefproject/beef.git && cd beef && sudo ./install
+	cd /usr/share/ && sudo git clone https://github.com/beefproject/beef.git && cd beef && sudo ./install
 	echo -e "\n $greenplus BeEF install complete \n"
 	sleep 2
 	}
@@ -217,7 +217,7 @@ install_beef() {
 install_dirbuster() {
 	echo -e "\n $greenplus Installing DirBuster \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git && sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/dirbuster/DirBuster-1.0-RC1.sh
+	cd /usr/share/ && sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git && sudo sed -i 's@DirBuster-1.0-RC1.jar@/usr/share/dirbuster/DirBuster-1.0-RC1.jar@g' /usr/share/dirbuster/DirBuster-1.0-RC1.sh
 	echo -e "\n $greenplus DirBuster install complete \n"
 	sleep 2
 	}
@@ -225,7 +225,7 @@ install_dirbuster() {
 install_enum4linux() {
 	echo -e "\n $greenplus Installing enum4linux \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://gitlab.com/kalilinux/packages/enum4linux.git
+	cd /usr/share/ && sudo git clone https://gitlab.com/kalilinux/packages/enum4linux.git
 	echo -e "\n $greenplus enum4Linux install complete \n"
 	sleep 2
 	}
@@ -233,7 +233,7 @@ install_enum4linux() {
 install_seclists() {
 	echo -e "\n $greenplus Installing SecLists \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/danielmiessler/SecLists.git
+	cd /usr/share/ && sudo git clone https://github.com/danielmiessler/SecLists.git
 	echo -e "\n $greenplus SecLists install complete \n"
 	sleep 2
 	}
@@ -241,7 +241,7 @@ install_seclists() {
 install_hydra() {
 	echo -e "\n $greenplus Installing THC-hydra \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra && sudo ./configure && sudo make && sudo make install
+	cd /usr/share/ && sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra && sudo ./configure && sudo make && sudo make install
 	echo -e "\n $greenplus THC-Hydra install complete \n"
 	sleep 2
 	}
@@ -249,7 +249,7 @@ install_hydra() {
 install_responder() {
 	echo -e "\n $greenplus Installing Responder \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/lgandx/Responder.git
+	cd /usr/share/ && sudo git clone https://github.com/lgandx/Responder.git
 	echo -e "\n $greenplus Responder install complete \n"
 	sleep 2
 	}
@@ -258,7 +258,7 @@ install_evilwinrm() {
 	echo -e "\n $greenplus Installing Evil-WinRM \n"
 	sleep 2
 	sudo gem install bundler winrm winrm-fs stringio logger fileutils
-	cd /opt/ && sudo git clone https://github.com/Hackplayers/evil-winrm.git
+	cd /usr/share/ && sudo git clone https://github.com/Hackplayers/evil-winrm.git
 	sudo gem install evil-winrm
 	echo -e "\n $greenplus Evil-WinRM install complete \n"
 	sleep 2
@@ -267,7 +267,7 @@ install_evilwinrm() {
 install_nikto() {
 	echo -e "\n $greenplus Installing Nikto \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/sullo/nikto
+	cd /usr/share/ && sudo git clone https://github.com/sullo/nikto
 	echo -e "\n $greenplus Nikto install complete \n"
 	sleep 2
 	}
@@ -275,7 +275,7 @@ install_nikto() {
 install_smbmap() {
 	echo -e "\n $greenplus Installing SMBMap \n"
 	sleep 2
-	cd /opt/ && sudo pip3 install smbmap
+	cd /usr/share/ && sudo pip3 install smbmap
 	echo -e "\n $greenplus SMBMap install complete \n"
 	sleep 2
 	}
@@ -283,7 +283,7 @@ install_smbmap() {
 install_harvester() {
 	echo -e "\n $greenplus Installing Harvester \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/laramies/theHarvester.git && cd theHarvester && sudo python3 -m pip install -r requirements/base.txt
+	cd /usr/share/ && sudo git clone https://github.com/laramies/theHarvester.git && cd theHarvester && sudo python3 -m pip install -r requirements/base.txt
 	echo -e "\n $greenplus Harvester install complete \n"
 	sleep 2
 	}
@@ -291,7 +291,7 @@ install_harvester() {
 install_sqlmap() {
 	echo -e "\n $greenplus Installing SQLMap \n"
 	sleep 2
-	cd /opt/ && sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+	cd /usr/share/ && sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
 	echo -e "\n $greenplus SQLMap install complete \n"
 	sleep 2
 	}
@@ -299,7 +299,7 @@ install_sqlmap() {
 install_peass() {
 	echo -e "\n $greenplus Installing PEASS \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/carlospolop/PEASS-ng.git
+	cd /usr/share/ && sudo git clone https://github.com/carlospolop/PEASS-ng.git
 	echo -e "\n $greenplus PEASS install complete \n"
 	sleep 2
 	}
@@ -312,7 +312,7 @@ ask_to_install_rtl8812au() {
 rtl8812au_install () {
 	echo -e "\n $greenplus Installing RTL8812AU driver \n"
     sleep 2
-    cd /opt/ && sudo git clone -b v5.6.4.2 https://github.com/aircrack-ng/rtl8812au.git && cd rtl8812au && sudo make && sudo make install
+    cd /usr/share/ && sudo git clone -b v5.6.4.2 https://github.com/aircrack-ng/rtl8812au.git && cd rtl8812au && sudo make && sudo make install
     echo -e "\n $greenplus RTL8812AU driver install complete \n \n"
     sleep 2
     }
