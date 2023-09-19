@@ -146,9 +146,9 @@ install_mdk4() {
 install_wifite() {
 	echo -e "\n $greenplus Installing Wifite \n"
 	sleep 2
- 	git clone https://github.com/kimocoder/wifite2.git
-	cd wifite2
+ 	cd /usr/share/ && git clone https://github.com/kimocoder/wifite2.git && cd wifite2
 	pip3 install -r requirements.txt
+ 	sudo pip3 install -r requirements.txt
  	sudo python3 setup.py install
   	echo -e "\n $greenplus Wifite install complete \n"
 	sleep 2
