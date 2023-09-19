@@ -25,6 +25,7 @@ install() {
 	install_hcxtools
 	install_hashcat-utils
 	install_mdk4
+	install_wifite
 	install_unicorn
 	install_setoolkit
 	install_bloodhound
@@ -139,6 +140,17 @@ install_mdk4() {
 	sleep 2
 	cd /usr/share/ && sudo git clone https://github.com/aircrack-ng/mdk4 && cd mdk4 && sudo make && sudo make install
 	echo -e "\n $greenplus mdk4 install complete \n"
+	sleep 2
+	}
+
+install_wifite() {
+	echo -e "\n $greenplus Installing Wifite \n"
+	sleep 2
+ 	git clone https://github.com/kimocoder/wifite2.git
+	cd wifite2
+	pip3 install -r requirements.txt
+ 	sudo python3 setup.py install
+  	echo -e "\n $greenplus Wifite install complete \n"
 	sleep 2
 	}
 
