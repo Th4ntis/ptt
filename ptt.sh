@@ -118,7 +118,8 @@ install_hcxdumptool() {
 install_hcxtools() {
 	echo -e "\n $greenplus Installing HCXTools \n"
 	sleep 2
-	cd /usr/share/ && sudo git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && sudo make && sudo make install
+	sudo apt install -y libcurl4-openssl-dev
+ 	cd /usr/share/ && sudo git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && sudo make && sudo make install
 	echo -e "\n $greenplus hcxtools install complete \n"
 	sleep 2
 	}
@@ -126,7 +127,7 @@ install_hcxtools() {
 install_hashcat-utils() {
 	echo -e "\n $greenplus Installing Hashat-Utils \n"
 	sleep 2
-	cd /usr/share/ && sudo git clone https://github.com/hashcat/hashcat-utils.git && cd hashcat-utils/src && sudo make && sudo cp *bin ../bin
+ 	cd /usr/share/ && sudo git clone https://github.com/hashcat/hashcat-utils.git && cd hashcat-utils/src && sudo make && sudo cp *bin ../bin
 	echo -e "\n $greenplus hashcat-utils install complete \n"
 	sleep 2
 	}
