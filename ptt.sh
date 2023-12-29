@@ -13,7 +13,7 @@ greenplus='\e[1;33m[++]\e[0m'
 install() {
 	sudo apt update && sudo apt update -y 
 	echo -e "\n $greenplus Installing list of tools through apt \n"
-	sudo apt install -y aircrack-ng autoconf automake bison build-essential bully clang cmake crunch curl default-jre dirb docker.io docker-compose ethtool ettercap-common ettercap-graphical flex git golang-go gpsd gpsd-clients gpsd-tools hostapd iw john libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnetfilter-queue-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool libusb-1.0-0-dev lighttpd net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip reaver rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
+	sudo apt install -y aircrack-ng autoconf automake bison build-essential bully clang cmake crunch curl default-jre dirb docker.io docker-compose ethtool ettercap-common ettercap-graphical flex git golang-go gpsd gpsd-clients gpsd-tools hostapd iw john libbz2-dev libcmocka-dev libcurl4-openssl-dev libgmp-dev libhwloc-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libpcre3-dev libsqlite3-dev libssl-dev libtool lighttpd net-tools nmap nvidia-opencl-dev pkg-config python3 python3-pip reaver rfkill screen shtool tcpdump tshark usbutils wireshark wpasupplicant yasm zlib1g-dev
  	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
@@ -61,6 +61,7 @@ install_go() {
 install_bettercap() {
 	echo -e "\n $greenplus Installing Bettercap \n"
 	sleep 2
+	sudo apt instal -y libnetfilter-queue-dev libusb-1.0-0-dev libpcap-dev
 	go install github.com/bettercap/bettercap@latest
 	sudo ~/.go/bin/bettercap -eval "caplets.update; ui.update; q"
 	echo -e "\n $greenplus Bettercap install complete \n"
