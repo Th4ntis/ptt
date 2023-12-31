@@ -17,7 +17,8 @@ install() {
  	echo -e "\n $greenplus Complete! \n"
 	install_go
 	install_bettercap
-	install_kerbrute
+ 	install_kerbrute
+ 	install_ffuf
 	install_gobuster
 	install_kismet
 	install_hashcat
@@ -33,7 +34,6 @@ install() {
 	install_impacket
 	install_burpsuite
 	install_nessus
-	install_beef
 	install_dirbuster
 	install_enum4linux
 	install_seclists
@@ -65,6 +65,14 @@ install_bettercap() {
 	go install github.com/bettercap/bettercap@latest
 	sudo ~/.go/bin/bettercap -eval "caplets.update; ui.update; q"
 	echo -e "\n $greenplus Bettercap install complete \n"
+	sleep 2
+	}
+
+ install_ffuf() {
+ 	echo -e "\n $greenplus Installing Ffuf \n"
+	sleep 2
+	go install github.com/ffuf/ffuf/v2@latest
+ 	echo -e "\n $greenplus Ffuf install complete \n"
 	sleep 2
 	}
 
