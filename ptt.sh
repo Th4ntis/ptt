@@ -110,6 +110,7 @@ install_kismet() {
 install_hashcat() {
 	echo -e "\n $greenplus Installing hashcat \n"
 	sleep 2
+ 	sudo apt install -y ocl-icd-libopencl1 pocl-opencl-icd
 	cd /usr/share/ && sudo git clone https://github.com/hashcat/hashcat && cd hashcat && sudo make && sudo make install
 	echo -e "\n $greenplus hashcat install complete \n"
 	sleep 2
