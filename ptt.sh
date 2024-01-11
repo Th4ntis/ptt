@@ -185,9 +185,9 @@ install_metasploit() {
 	echo -e "\n $greenplus Installing Metasploit \n"
 	sleep 2
 	cd /home/$USER/
-	curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
-	chmod 755 /home/$USER/msfinstall
-	./msfinstall
+	curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+  	chmod 755 msfinstall && \
+  	./msfinstall
 	rm /home/$USER/msfinstall
 
 	sudo apt-key export 2007B954 | sudo gpg --dearmour -o /opt/keyrings/metasploit.gpg
@@ -199,7 +199,8 @@ install_metasploit() {
 install_impacket() {
 	echo -e "\n $greenplus Installing Impacket \n"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/SecureAuthCorp/impacket.git && cd impacket && sudo python3 -m pip install .
+ 	sudo apt install -y pipx
+	python3 -m pipx install impacket
 	echo -e "\n $greenplus Impacket install complete \n"
 	sleep 2
 	}
