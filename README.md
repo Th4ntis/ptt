@@ -6,8 +6,9 @@ This is still a work in a progress as I am adding additional tools and updating 
 This is just a simple bash script to install and get some tools I like to use when doing CTFs, testing against my own virtual environemnts, TryHackMe, HackTheBox, etc. It installs the tools to the /opt/pentest directory(except bettercap is under ~/.go/). As I use ZSH it adds alias to my .zsh file for some of these as well.
 
 This list includes tools such as:
-# List Of Tools
-- [Joplin](https://joplinapp.org/) - For note taking
+- [Joplin](https://joplinapp.org/)
+- [Notion](https://www.notion.so/)
+- [Obsidian](https://obsidian.md/)
 
 ## OSINT / Enumeration
 - [Recon-NG](https://github.com/lanmaster53/recon-ng)
