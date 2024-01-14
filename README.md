@@ -40,7 +40,7 @@ This list includes tools such as:
 - [Hashcat-Utils](https://github.com/hashcat/hashcat-utils)
 - [HCXTools](https://github.com/ZerBea/hcxtools)
 - [Metasploit](https://docs.metasploit.com/docs/using-metasploit/getting-started/nightly-installers.html)
-- [PEASS](https://github.com/carlospolop/PEASS-ng) - PrivEsc
+- [PEASS](https://github.com/carlospolop/PEASS-ng)
 - [lgandx Responder](https://github.com/lgandx/Responder) - [SpiderLabs Responder](https://github.com/SpiderLabs/Responder)
 - [Impacket](https://github.com/fortra/impacket)
 - [thc-Hydra](https://github.com/vanhauser-thc/thc-hydra)
