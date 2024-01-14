@@ -1,9 +1,8 @@
 # PTT - Pentest Tools
 Disclaimer: **I did NOT create or develop any of these tools**
-
-This is still a work in a progress as I am adding additional tools and updating the script as I got. Any constructive criticism welcome or any other tool suggestions are welcome as well.
-
 This is just a simple bash script to install and get some tools I like to use when doing CTFs, testing against my own virtual environemnts, TryHackMe, HackTheBox, etc. It installs the tools to the /opt/pentest directory(except bettercap is under ~/.go/). As I use ZSH it adds alias to my .zsh file for some of these as well.
+
+This is still a work in a progress as I am adding additional tools and updating the script as I go. Any constructive criticism welcome or any other tool suggestions are welcome as well.
 
 This list includes tools such as:
 - [Joplin](https://joplinapp.org/)
