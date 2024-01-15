@@ -119,7 +119,7 @@ install_ffuf() {
 install_nikto() {
 	echo -e "\n $greenplus Installing Nikto"
 	sleep 2
-	cd /opt/Pentest ; git clone https://github.com/sullo/nikto
+	cd /opt/Pentest && sudo git clone https://github.com/sullo/nikto
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -143,7 +143,7 @@ install_gobuster() {
 install_dirbuster() {
 	echo -e "\n $greenplus Installing Disbuster"
 	sleep 2
-	cd /opt/ ; sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git ; sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/dirbuster/DirBuster-1.0-RC1.sh
+	cd /opt/Pentest ; sudo git clone https://gitlab.com/kalilinux/packages/dirbuster.git ; sudo sed -i 's@DirBuster-1.0-RC1.jar@/opt/dirbuster/DirBuster-1.0-RC1.jar@g' /opt/Pentest/dirbuster/DirBuster-1.0-RC1.sh
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -151,7 +151,7 @@ install_dirbuster() {
 install_sqlmap() {
 	echo -e "\n $greenplus Installing SQLMap"
 	sleep 2
-	cd /opt/Pentest ; sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+	cd /opt/Pentest && sudo git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -304,8 +304,8 @@ install_smbmap() {
 install_responder() {
 	echo -e "\n $greenplus Installing Responder"
 	sleep 2
-	pipx install responder
-#	cd /opt/Pentest && sudo git clone https://github.com/lgandx/Responder.git
+#	pipx install responder
+	cd /opt/Pentest && sudo git clone https://github.com/lgandx/Responder.git
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -330,7 +330,7 @@ install_hydra() {
 install_pcredz() {
 	echo -e "\n $greenplus Installing PCredz"
 	sleep 2
-	cd /opt/Penest && sudo git clone https://github.com/lgandx/PCredz.git
+	cd /opt/Pentest && sudo git clone https://github.com/lgandx/PCredz.git
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -338,9 +338,15 @@ install_pcredz() {
 install_bloodhound() {
 	echo -e "\n $greenplus Installing Bloodhound"
 	sleep 2
-	sudo apt install -y openjdk-11-jdk apt-transport-https
-	firefox https://bloodhound.readthedocs.io/en/latest/installation/linux.html #install-neo4j
-	firefox https://github.com/BloodHoundAD/BloodHound/releases
+	sudo apt install -y openjdk-17-jdk apt-transport-https
+	wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
+	echo 'deb https://debian.neo4j.com stable 4' | sudo tee /etc/apt/sources.list.d/neo4j.list > /dev/null
+	sudo apt update
+	sudo apt install -y neo4j
+	firefox http://localhost:7474/
+	sudo /usr/bin/neo4j console
+#	firefox https://bloodhound.readthedocs.io/en/latest/installation/linux.html #install-neo4j
+	sudo /opt/Pentest && sudo wget https://github.com/BloodHoundAD/BloodHound/releases/download/v4.3.1/BloodHound-linux-x64.zip && unzip BloodHound-linux-x64.zip && rm BloodHound-linux-x64.zip
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -356,7 +362,7 @@ install_onedriveuseremum() {
 install_crackmapexec() {
 	echo -e "\n $greenplus Installing CrackMapExec"
 	sleep 2
-	cd /opt/Pentest && sudo wget https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.4.0/cme-ubuntu-latest-3.11.zip && sudo unzip cme-ubuntu-latest-3.11.zip && sudo rm rm cme-ubuntu-latest-3.11.zip
+	cd /opt/Pentest && sudo wget https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.4.0/cme-ubuntu-latest-3.11.zip && sudo unzip cme-ubuntu-latest-3.11.zip && sudo rm cme-ubuntu-latest-3.11.zip
 	sudo mkdir crackmapexec && sudo mv cme crackmapexec/
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
@@ -381,6 +387,7 @@ install_enum4linux() {
 install_evilwinrm() {
 	echo -e "\n $greenplus Installing EvilWinRM"
 	sleep 2
+	sudo apt install -y ruby-dev
 	sudo gem install evil-winrm
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
