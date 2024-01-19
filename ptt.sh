@@ -321,7 +321,7 @@ install_impacket() {
 install_hydra() {
 	echo -e "\n $greenplus Installing THC-Hydra"
 	sleep 2
-	cd /opt/ && sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra && sudo ./configure && sudo make && sudo make install
+	cd /opt/Pentest && sudo git clone https://github.com/vanhauser-thc/thc-hydra.git && cd thc-hydra && sudo ./configure && sudo make && sudo make install
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -418,3 +418,51 @@ finish() {
 	}
 
 install
+
+# REMOVE/UNINSTALL SECTION
+# sudo apt remove -y aircrack-ng dirb docker.io docker-compose golang-go gpsd gpsd-clients gpsd-tools nmap pipx proxychains4 python3 python3-pip sshuttle wireshark metasploit nessus neo4j
+# sudo rm -r ~/.go/bin/bettercap
+# sudo rm -r ~/.go/pkg/mod/github.com/bettercap
+# sudo rm -r ~/.go/pkg/mod/cache/download/github.com/bettercap
+# sudo rm -r ~/.go/pkg/mod/cache/download/github.com/bettercap/bettercap
+# sudo rm -r ~/.go/pkg/mod/cache/download/sumdb/sum.golang.org/lookup/github.com/bettercap
+# sudo rm -r ~/.go/bin/amass
+# sudo rm -r ~/.go/pkg/mod/github.com/owasp-amass/amass
+# sudo rm -r ~/.go/pkg/mod/github.com/owasp-amass/amass/v4@v4.2.0/cmd/amass
+# sudo rm -r ~/.go/pkg/mod/cache/download/github.com/owasp-amass/amass
+# sudo rm -r ~/.go/pkg/mod/cache/download/sumdb/sum.golang.org/lookup/github.com/owasp-amass/amass
+# sudo rm -r ~/.go/pkg/mod/github.com/projectdiscovery/subfinder
+# sudo rm -r ~/.go/pkg/mod/github.com/projectdiscovery/subfinder/v2@v2.6.4/cmd/subfinder
+# sudo rm -r ~/.go/pkg/mod/cache/download/github.com/projectdiscovery/subfinder
+# sudo rm -r ~/.go/pkg/mod/cache/download/sumdb/sum.golang.org/lookup/github.com/projectdiscovery/subfinder
+# sudo rm -r ~/.go/bin/ffuf
+# sudo rm -r ~/.go/pkg/mod/github.com/ffuf
+# sudo rm -r ~/.go/pkg/mod/github.com/ffuf/ffuf@v1.5.0/pkg/ffuf
+# sudo rm -r ~/.go/pkg/mod/github.com/ffuf/ffuf
+# sudo rm -r ~/.go/pkg/mod/github.com/ffuf/ffuf/v2@v2.1.0/pkg/ffuf
+# sudo rm -r ~/.go/pkg/mod/cache/download/github.com/ffuf
+# sudo rm -r ~/.go/pkg/mod/cache/download/github.com/ffuf/ffuf
+# sudo rm -r ~/.go/pkg/mod/cache/download/sumdb/sum.golang.org/lookup/github.com/ffuf
+# sudo rm -r ~/.go/pkg/mod/cache/download/sumdb/sum.golang.org/lookup/github.com/ffuf/ffuf
+# sudo rm -r ~/.go/bin/gobuster
+# sudo rm -r ~/.go/pkg/mod/github.com/!o!j/gobuster
+# sudo rm -r ~/.go/pkg/mod/cache/download/github.com/!o!j/gobuster
+# sudo rm -r ~/.go/pkg/mod/cache/download/sumdb/sum.golang.org/lookup/github.com/!o!j/gobuster
+# sudo rm -rfv /usr/local/bin/kismet* /usr/local/share/kismet* /usr/local/etc/kismet*
+# sudo pipx uninstall shodan
+# sudo pipx uninstall responder
+# sudo pipx uninstall smbmap
+# sudo pipx uninstall donpapi
+# sudo pipx uninstall impacket
+# sudo pipx uninstall netexec
+# sudo rm -r /opt/Pentest
+# sudo rm -r /usr/sbin/mdk4
+# sudo rm -r /usr/share/mdk4
+# sudo rm -r /usr/local/bin/hydra
+# sudo rm -r /usr/local/bin/hashcat
+# sudo rm -r /usr/local/share/doc/hashcat
+# sudo rm -r /usr/local/share/hashcat
+# sudo rm -r /usr/bin/hcxdumptool
+# sudo rm -r /etc/apt/sources.list.d/neo4j.list
+# sudo rm -r /etc/apt/sources.list.d/metasploit-framework.list
+# sudo gem uninstall evilwinrm
