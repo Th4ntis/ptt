@@ -313,8 +313,7 @@ install_responder() {
 install_impacket() {
 	echo -e "\n $greenplus Installing Impacket"
 	sleep 2
-	pipx install impacket
-#	python3 -m pipx install impacket
+	python3 -m pipx install impacket
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
