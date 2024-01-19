@@ -127,7 +127,7 @@ install_nikto() {
 install_shodancli() {
 	echo -e "\n $greenplus Installing ShodanCLI"
 	sleep 2
-	pipx install shodan
+	python3 -m pipx install shodan
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -296,7 +296,7 @@ install_peass() {
 install_smbmap() {
 	echo -e "\n $greenplus Installing SMBMap"
 	sleep 2
-	pipx install smbmap
+	python3 -m pipx install smbmap
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -304,7 +304,7 @@ install_smbmap() {
 install_responder() {
 	echo -e "\n $greenplus Installing Responder"
 	sleep 2
-#	pipx install responder
+#	python3 -m pipx install responder
 	cd /opt/Pentest && sudo git clone https://github.com/lgandx/Responder.git
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
@@ -370,7 +370,7 @@ install_crackmapexec() {
 install_netexec() {
 	echo -e "\n $greenplus Installing NetExec"
 	sleep 2
-	pipx install git+https://github.com/Pennyw0rth/NetExec
+	python3 -m pipx install git+https://github.com/Pennyw0rth/NetExec
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -407,7 +407,7 @@ install_Nessus() {
 install_donpapi() {
 	echo -e "\n $greenplus Installing DonPAPI"
 	sleep 2
-	pipx install donpapi
+	python3 -m pipx install donpapi
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
