@@ -361,8 +361,10 @@ install_onedriveuseremum() {
 install_crackmapexec() {
 	echo -e "\n $greenplus Installing CrackMapExec"
 	sleep 2
-	cd /opt/Pentest && sudo wget https://github.com/byt3bl33d3r/CrackMapExec/releases/download/v5.4.0/cme-ubuntu-latest-3.11.zip && sudo unzip cme-ubuntu-latest-3.11.zip && sudo rm cme-ubuntu-latest-3.11.zip
-	sudo mkdir crackmapexec && sudo mv cme crackmapexec/
+	python3 -m pip install pipx
+	cd /opt/Pentest && sudo git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec
+	cd CrackMapExec
+	pipx install .
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
