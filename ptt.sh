@@ -279,8 +279,6 @@ install_metasploit() {
 	chmod 755 msfinstall && \
 	./msfinstall
 	rm /home/$USER/msfinstall
-	sudo apt-key export 2007B954 | sudo gpg --dearmour -o /opt/keyrings/metasploit.gpg
-	sudo echo 'deb [arch=amd64 signed-by=/opt/keyrings/metasploit.gpg] http://downloads.metasploit.com/data/releases/metasploit-framework/apt lucid main' | sudo tee /etc/apt/sources.list.d/metasploit-framework.list > /dev/null
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
@@ -337,16 +335,8 @@ install_pcredz() {
 install_bloodhound() {
 	echo -e "\n $greenplus Installing Bloodhound"
 	sleep 2
-	sudo apt install -y openjdk-17-jdk apt-transport-https
-	wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
-	echo 'deb https://debian.neo4j.com stable 4' | sudo tee /etc/apt/sources.list.d/neo4j.list > /dev/null
-	sudo apt update
-	sudo apt install -y neo4j
-	firefox http://localhost:7474/
-	sudo /usr/bin/neo4j console
-#	firefox https://bloodhound.readthedocs.io/en/latest/installation/linux.html #install-neo4j
-	sudo /opt/Pentest && sudo wget https://github.com/BloodHoundAD/BloodHound/releases/download/v4.3.1/BloodHound-linux-x64.zip && unzip BloodHound-linux-x64.zip && rm BloodHound-linux-x64.zip
-	echo -e "\n $greenplus Complete \n"
+#	Update coming soon
+ 	echo -e "\n $greenplus Complete \n"
 	sleep 2
 	}
 
