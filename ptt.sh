@@ -184,7 +184,7 @@ install_hcxdumptools() {
 install_hcxtools() {
 	echo -e "\n $greenplus Installing HCXTools"
 	sleep 2
-	sudo apt install -y libcurl4-openssl-dev
+	sudo apt install -y libcurl4-openssl-dev libssl-dev zlib1g-dev
  	cd /opt/Pentest && sudo git clone https://github.com/ZerBea/hcxtools.git && cd hcxtools && sudo make && sudo make install
 	echo -e "\n $greenplus Complete \n"
 	sleep 2
